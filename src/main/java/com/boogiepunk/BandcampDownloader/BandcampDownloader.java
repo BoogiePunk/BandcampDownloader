@@ -38,7 +38,7 @@ public class BandcampDownloader {
 	//Download tracks
 	JsonObject json = JsonObject.readFrom(m
 			.replaceFirst("{$1}")
-			.replaceAll("// .*?\n", "")
+			.replaceAll("\\/\\/(?!.*?\\\").*?\\n", "")
 			.replace("\" + \"", "")
 			.replace("            ", "")			//annoying regex shit cuz Minimal-Json ain't woke enough to handle this shit alone
 			.replaceAll("    (.*?):", "\"$1\":"));
@@ -70,7 +70,7 @@ public class BandcampDownloader {
 	  try {
 		String track = String.format("%02d", eo.get("track_num").asInt());
 		String title = eo.get("title").asString();
-		String fn = outDir + "/" + (track + " - " + title).replace("\\", "").replace("/", "") + ".mp3";
+		String fn = outDir + "/" + getValidPathName((track + " - " + title)) + ".mp3";
 
 		System.out.println(track + " - " + title);
 
@@ -103,7 +103,6 @@ public class BandcampDownloader {
 
 	  progressBar.setValue(progressBar.getValue()+1);
 	});
-
   }
 
   public static void download() {
@@ -137,6 +136,6 @@ public class BandcampDownloader {
   }
 
   private static String getValidPathName(String s) {
-	return s.replace("<", "[").replace(">", "]").replace(":", "-").replace("*", "-").replace("?", "").replace("\"", " ").replace("/", " ").replace("|", " ");
+	return s.replace("<", "[").replace(">", "]").replace(":", "-").replace("*", "-").replace("?", "").replace("\"", " ").replace("/", " ").replace("\\", " ").replace("|", " ");
   }
 }

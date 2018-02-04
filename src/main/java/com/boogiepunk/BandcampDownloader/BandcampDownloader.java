@@ -42,12 +42,11 @@ public class BandcampDownloader {
 			.replace("\" + \"", "")
 			.replace("            ", "")			//annoying regex shit cuz Minimal-Json ain't woke enough to handle this shit alone
 			.replaceAll("    (.*?):", "\"$1\":"));
+	JsonObject crt = json.get("current").asObject();
 
-	JsonObject pkg = json.get("packages").asArray().get(0).asObject();
-
-	String album = pkg.get("download_title").asString();
-	String artist = pkg.get("download_artist").asString();
-	String release = pkg.get("album_release_date").asString().replaceAll(".*?([0-9]{4}).*", "$1");
+	String album = crt.get("title").asString();
+	String artist = crt.get("artist").isNull() ? "" : crt.get("artist").asString();
+	String release = crt.get("release_date").asString().replaceAll(".*?([0-9]{4}).*", "$1");
 
 	System.out.println(album + " (" + artist + ", " + release + ")");
 

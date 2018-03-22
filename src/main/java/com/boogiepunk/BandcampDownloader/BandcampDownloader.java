@@ -22,7 +22,7 @@ public class BandcampDownloader {
 	//Set up document
 	Document d = Jsoup.connect(url).get();
 	Pattern p = Pattern.compile(".*TralbumData = \\{(.*?)\\};.*", Pattern.DOTALL);
-	Matcher m = p.matcher(d.getElementsByTag("script").get(9).html());
+	Matcher m = p.matcher(d.select("script").html());
 
 	//Get album data
 	String albumName = d.select("h2[class=trackTitle][itemprop=name]").first().text();

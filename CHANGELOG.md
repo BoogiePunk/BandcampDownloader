@@ -1,4 +1,7 @@
 # Changelog
+## [1.0.3]
+- Fixed the parsing of relevant JavaScript variables
+
 ## [1.0.2]
 - Fixed invalid parsing of album data
 
@@ -12,3 +15,4 @@
 [1.0.0]: https://github.com/BoogiePunk/BandcampDownloader/releases/tag/1.0.0
 [1.0.1]: https://github.com/BoogiePunk/BandcampDownloader/releases/tag/1.0.1
 [1.0.2]: https://github.com/BoogiePunk/BandcampDownloader/releases/tag/1.0.2
+[1.0.3]: https://github.com/BoogiePunk/BandcampDownloader/releases/tag/1.0.3
